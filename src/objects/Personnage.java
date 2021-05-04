@@ -20,7 +20,7 @@ public class Personnage {
     }
     public Personnage(int lv){
         this.nom = "ennemi de niveau "+lv;
-        this.prénom = "Albatard";
+        this.prénom = "Allbatard";
         this.force=5+(lv*2);
         this.pv=(5*lv)+10;
         this.lv=lv;
