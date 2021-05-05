@@ -1,8 +1,8 @@
 package exos;
 
 public class Voiture {
-    private int vitMax;
-    private int vitMin;
+    private final int vitMax;
+    private final int vitMin;
     public int nbTour;
     public String Model;
     public Duree temps;
@@ -16,11 +16,6 @@ public class Voiture {
         this.vitMoyenne = vitesseMoyenne(this.getVitMax(),this.getVitMin());
     }
 
-    public Voiture(int vitMax, int vitMin) {
-        this.vitMax = vitMax;
-        this.vitMin = vitMin;
-        this.nbTour = 0;
-    }
 
     public Duree getTemps() {
         return temps;
@@ -48,30 +43,10 @@ public class Voiture {
         return vitMin;
     }
 
-    public int getNbTour() {
-        return nbTour;
-    }
-
-    public void setVitMax(int vitMax) {
-        this.vitMax = vitMax;
-    }
-
-    public void setVitMin(int vitMin) {
-        this.vitMin = vitMin;
-    }
-
-    public void setNbTour(int nbTour) {
-        this.nbTour = nbTour;
-    }
 
     public String getModel() {
         return Model;
     }
-
-    public void setModel(String model) {
-        Model = model;
-    }
-
 
     public void FiniUntour(){
         this.nbTour++;

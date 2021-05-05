@@ -6,9 +6,9 @@ import java.util.Scanner;
 public class Main$ {
     public static void main(String[] args) {
 
-        String[] marques = {"Trueno Panda", "Ford Fiesta", "Toyota Prius", "Tesla", "Formule 1",
-                "Toyota Corolla", "Volkswagen golf", "Honda Civic",
-                "Chevrolet Impala", "Mercedes Citroen", "Renault Clio",
+        String[] marques = {"Trueno Panda", "Ford Fiesta", "Toyota Prius", "Tesla Roadster", "Formule 1",
+                "Toyota Corolla", "Volkswagen Golf", "Honda Civic",
+                "Chevrolet Impala", "Citroen Berlingo", "Renault Clio",
                 "Opel Astra", "Hyundai Elantra", "Ford Mustang", "Mazda 323", "Fiat Uno", "Peugeot 206"};
         ArrayList<Integer> marquesChoisies = new ArrayList<>();
         Scanner s = new Scanner(System.in);
@@ -59,9 +59,10 @@ public class Main$ {
         if (!List.isEmpty()) {
             while (!exist) {
                 random = random();
-                for (int i = 0; i < List.size(); i++) {
-                    if (List.get(i) == random) {
+                for (Integer integer : List) {
+                    if (integer == random) {
                         cpt = 1;
+                        break;
                     }
                 }
                 exist = cpt != 1;
