@@ -6,11 +6,20 @@ public class Voiture {
     public int nbTour;
     public String Model;
     public String Marque;
+    public Duree temps;
 
     public Voiture(int vitMax, int vitMin) {
         this.vitMax = vitMax;
         this.vitMin = vitMin;
         this.nbTour = 0;
+    }
+
+    public Duree getTemps() {
+        return temps;
+    }
+
+    public void setTemps(Duree temps) {
+        this.temps=this.temps.AddDuree(temps);
     }
 
     public Voiture(int vitMax, int vitMin, String model, String marque) {
@@ -64,5 +73,10 @@ public class Voiture {
     public void FiniUntour(){
         this.nbTour++;
     }
-
+    public int vitesseMoyenne(int vitMax, int vitMin){
+        return (int)Math.random()*(vitMax-vitMin)+vitMin;
+    }
+    public void seDecrire(){
+        System.out.print("");
+    }
 }

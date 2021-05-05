@@ -65,17 +65,17 @@ public class Duree {
         this.setMin(d.getMin());
         this.setSec(d.getSec());
     }
-    public void SubDurée(Duree d){
+    public Duree SubDurée(Duree d){
         System.out.print(this.getDuree()+" - "+d.getDuree());
         Duree Dureesousstraite = new Duree(this.totalSecondes()-d.totalSecondes());
         System.out.println(Dureesousstraite);
-        this.setDuree(Dureesousstraite);
+        return Dureesousstraite;
 
     }
-    public void AddDuree(Duree d){
+    public Duree AddDuree(Duree d){
         System.out.println(this.getDuree()+" + "+d.getDuree());
         Duree DureeAjoutee = new Duree(this.totalSecondes()+d.totalSecondes());
         System.out.println(DureeAjoutee);
-        this.setDuree(DureeAjoutee);
+        return DureeAjoutee;
     }
 }

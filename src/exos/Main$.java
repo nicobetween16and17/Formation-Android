@@ -5,6 +5,8 @@ import java.util.Scanner;
 
 public class Main$ {
     public static void main(String[] args) {
+        String[] marques={"Trueno Panda","Ford Fiesta","Toyota Prius","Tesla","Formule 1","Toyota Corolla","Volkswagen golf","Honda Civic","","","","","","",""};
+        ArrayList<Integer>marquesChoisies=new ArrayList<>();
         Scanner s = new Scanner(System.in);
         ArrayList<Voiture> voitures = new ArrayList<>();
         System.out.print("Nombre de tour: ");
@@ -24,6 +26,11 @@ public class Main$ {
             vitmax= Math.max(vitmax, vitmin);
             vitmin=lepluspetit;
             voitures.add(new Voiture(vitmax,vitmin));
+        }
+        for (int i = 0; i < course.getCircuit().getDistance(); i++) {
+            System.out.println(i+"e tour");
+            course.tour();
+            System.out.println();
         }
 
 
