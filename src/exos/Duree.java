@@ -54,7 +54,7 @@ public class Duree {
         this.sec = sec;
     }
     public String getDuree(){
-        return this.getJour()+" jour"+this.getH()+" heure"+this.getMin()+" min"+this.getSec()+" secondes";
+        return this.getJour()+" jour "+this.getH()+" heure "+this.getMin()+" min "+this.getSec()+" secondes ";
     }
     public int totalSecondes(){
         return this.getJour()*24*60*60+this.getH()*60*60+this.getMin()*60+this.getSec();
@@ -65,17 +65,23 @@ public class Duree {
         this.setMin(d.getMin());
         this.setSec(d.getSec());
     }
+    public String CourseTemps(){
+        return (this.totalSecondes()-(this.totalSecondes()%60))/60+"min "+this.totalSecondes()%60+ "s ";
+    }
     public Duree SubDurée(Duree d){
-        System.out.print(this.getDuree()+" - "+d.getDuree());
-        Duree Dureesousstraite = new Duree(this.totalSecondes()-d.totalSecondes());
-        System.out.println(Dureesousstraite);
+        int temps1 = this.totalSecondes();
+        int temps2=d.totalSecondes();
+
+        Duree Dureesousstraite = new Duree(temps1-temps2);
+
         return Dureesousstraite;
 
     }
     public Duree AddDuree(Duree d){
-        System.out.println(this.getDuree()+" + "+d.getDuree());
-        Duree DureeAjoutee = new Duree(this.totalSecondes()+d.totalSecondes());
-        System.out.println(DureeAjoutee);
+        int temps1 = this.totalSecondes();
+        int temps2=d.totalSecondes();
+        Duree DureeAjoutee = new Duree(temps1+temps2);
+
         return DureeAjoutee;
     }
 }

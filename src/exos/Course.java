@@ -27,13 +27,14 @@ public class Course {
         this.circuit = circuit;
     }
     public Duree getTime(int km, int vitMoyenne){
-        double temps = (double)(km/vitMoyenne)*3600;
+        double temps = ((double)km/(double)vitMoyenne)*3600;
         return new Duree((int)temps);
     }
     public void tour(){
         for (int i = 0; i < getVoitures().size() ; i++) {
-            getVoitures().get(i).setTemps(getTime(getVoitures().get(i).vitesseMoyenne(getVoitures().get(i).getVitMax(),getVoitures().get(i).getVitMin()),this.circuit.distance));
-            getVoitures().get(i).FiniUntour();
+            this.getVoitures().get(i).setVitMoyenne();
+            this.getVoitures().get(i).setTemps(getTime(this.getCircuit().getDistance(),getVoitures().get(i).getVitMoyenne()));
+            this.getVoitures().get(i).FiniUntour();
         }
     }
     public Voiture laPlusRapide(){
@@ -42,11 +43,11 @@ public class Course {
             if (i==0){
                 pin = i;
             }else{
-                if(this.voitures.get(i).getTemps().SubDurée(this.voitures.get(pin).getTemps()).totalSecondes()>0){
+                if(this.getVoitures().get(i).getTemps().SubDurée(this.getVoitures().get(pin).getTemps()).totalSecondes()<0){
                     pin=i;
                 }
             }
         }
-        return this.voitures.get(pin);
+        return this.getVoitures().get(pin);
     }
 }
