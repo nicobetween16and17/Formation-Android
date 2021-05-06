@@ -13,8 +13,10 @@ public class Pokemon {
     ArrayList<Attaques> attaques;
     Types type;
     boolean stab;
+    int lv;
+    boolean inFight;
 
-    public Pokemon(int pv, int attaque, int defense, int vitesse, int attaqueSpecial, int defenseSpecial, String nom, ArrayList<Attaques> attaques, Types type) {
+    public Pokemon(int pv, int attaque, int defense, int vitesse, int attaqueSpecial, int defenseSpecial, String nom, ArrayList<Attaques> attaques, Types type,int lv) {
         this.pv = pv;
         this.attaque = attaque;
         this.defense = defense;
@@ -25,6 +27,8 @@ public class Pokemon {
         this.attaques = attaques;
         this.type=type;
         this.stab = false;
+        this.lv=lv;
+        this.inFight=false;
     }
 
     public int getPv() {
@@ -105,5 +109,24 @@ public class Pokemon {
 
     public void setStab(boolean stab) {
         this.stab = stab;
+    }
+    public int getTotalStat(int basesStat){
+        return (2*basesStat*this.lv)/100;
+    }
+
+    public int getLv() {
+        return lv;
+    }
+
+    public boolean isInFight() {
+        return inFight;
+    }
+
+    public void setLv(int lv) {
+        this.lv = lv;
+    }
+
+    public void setInFight(boolean inFight) {
+        this.inFight = inFight;
     }
 }
