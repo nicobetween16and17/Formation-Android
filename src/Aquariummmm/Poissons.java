@@ -1,5 +1,12 @@
 package Aquariummmm;
 
+import Aquariummmm.Fishs.Carnivores.Clownfish;
+import Aquariummmm.Fishs.Carnivores.Merou;
+import Aquariummmm.Fishs.Carnivores.Thon;
+import Aquariummmm.Fishs.Herbivore.Bar;
+import Aquariummmm.Fishs.Herbivore.Carpe;
+import Aquariummmm.Fishs.Herbivore.Sole;
+
 public class Poissons extends Beings{
     Sexe sexe;
     String nom;
@@ -28,7 +35,28 @@ public class Poissons extends Beings{
         return nom;
     }
 
+    public Regime getRegime() {
+        return regime;
+    }
+
     public void setNom(String nom) {
         this.nom = nom;
     }
+    public boolean isHungry(){
+        return this.getPv()<=5;
+    }
+    public void Mange(Beings b){
+        if(b instanceof Algues){
+            b.setPv(b.getPv()-2);
+            this.setPv(this.getPv()+2);
+            System.out.println(this.getNom()+" mange une Algue" );
+        }
+        if (b instanceof Poissons){
+            b.setPv(b.getPv()-4);
+            this.setPv(this.getPv()+5);
+            System.out.println(this.getNom()+" attaque "+((Poissons) b).getNom());
+        }
+    }
+
+
 }
