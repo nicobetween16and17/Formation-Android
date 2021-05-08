@@ -1,6 +1,11 @@
 package Aquariummmm;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Aquarium {
     ArrayList<Beings> beings;
@@ -17,6 +22,60 @@ public class Aquarium {
 
     public int getNbjour() {
         return nbjour;
+    }
+    public void initialize(){
+
+        Scanner s = new Scanner(System.in);
+        String pattern = "[A-Z]+\\:+(\\\\+\\w{1,}){1,}.txt";
+        Pattern p = Pattern.compile(pattern);
+        String path = "";
+        boolean match = false;
+        while (!match){
+            System.out.print("File path: ");
+            path = s.nextLine();
+            Matcher m=p.matcher(path);
+            match = m.matches();
+
+        }
+        System.out.println();
+        File file = new File(path);
+        Scanner Files = null;
+        try {
+            Files = new Scanner(file);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        boolean end=false;
+        while (Files.hasNextLine()){
+            String[] splits = Files.nextLine().split(" ");
+            try {
+                if(splits[1].equals("algue")){
+                    this.AddBeing(new Algues(10));
+                }
+                if(splits[1].equals("Merou")){
+                  
+                }
+                if(splits[1].equals("Thon")){
+
+                }
+                if(splits[1].equals("Sole")){
+
+                }
+                if(splits[1].equals("Clownfish")){
+
+                }
+                if(splits[1].equals("Bar")){
+
+                }
+                if(splits[1].equals("Carpe")){
+
+                }
+            }catch(Exception e){
+
+            }
+        }
+
+        this.AddBeing(new Beings(5));
     }
 
     public ArrayList<Beings> getBeings() {
