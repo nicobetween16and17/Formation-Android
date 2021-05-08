@@ -1,4 +1,8 @@
 package Aquariummmm;
 
-public class Algues {
+public class Algues extends Beings{
+
+    public Algues(int pv) {
+        super(pv);
+    }
 }
