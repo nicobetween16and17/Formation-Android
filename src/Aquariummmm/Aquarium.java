@@ -1,7 +1,16 @@
 package Aquariummmm;
 
+import Aquariummmm.Fishs.Carnivores.Clownfish;
+import Aquariummmm.Fishs.Carnivores.Merou;
+import Aquariummmm.Fishs.Carnivores.Thon;
+import Aquariummmm.Fishs.Herbivore.Bar;
+import Aquariummmm.Fishs.Herbivore.Carpe;
+import Aquariummmm.Fishs.Herbivore.Sole;
+
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.Matcher;
@@ -53,29 +62,70 @@ public class Aquarium {
                     this.AddBeing(new Algues(10));
                 }
                 if(splits[1].equals("Merou")){
-                  
+                    this.AddBeing(new Merou(10,splits[0],Integer.parseInt(splits[2])));
                 }
                 if(splits[1].equals("Thon")){
-
+                    this.AddBeing(new Thon(10,splits[0],Integer.parseInt(splits[2])));
                 }
                 if(splits[1].equals("Sole")){
-
+                    this.AddBeing(new Sole(10,splits[0],Integer.parseInt(splits[2])));
                 }
                 if(splits[1].equals("Clownfish")){
-
+                    this.AddBeing(new Clownfish(10,splits[0],Integer.parseInt(splits[2])));
                 }
                 if(splits[1].equals("Bar")){
-
+                    this.AddBeing(new Bar(10,splits[0],Integer.parseInt(splits[2])));
                 }
                 if(splits[1].equals("Carpe")){
-
+                    this.AddBeing(new Carpe(10,splits[0],Integer.parseInt(splits[2])));
                 }
             }catch(Exception e){
 
             }
         }
 
-        this.AddBeing(new Beings(5));
+
+    }
+    public void saveFile(){
+        try {
+            String race ="";
+            FileWriter save = new FileWriter("Save");
+            for (int i = 0; i < this.getBeings().size(); i++) {
+                if(this.getBeings().get(i)instanceof Algues){
+                    race="algue";
+                    save.write(this.getBeings().get(i).getPv()+" "+race+" "+this.getBeings().get(i).getAge());
+                }else{
+                    if (this.getBeings().get(i)instanceof Thon){
+                        race = "Thon";
+                    }
+                    if (this.getBeings().get(i)instanceof Merou){
+                        race ="Merou";
+                    }
+                    if (this.getBeings().get(i)instanceof Clownfish){
+                        race ="Clownfish";
+                    }
+                    if (this.getBeings().get(i)instanceof Bar){
+                        race ="Bar";
+                    }
+                    if (this.getBeings().get(i)instanceof Sole){
+                        race ="Sole";
+                    }
+                    if (this.getBeings().get(i)instanceof Carpe){
+                        race = "Carpe";
+                    }
+                    save.write(((Poissons)this.getBeings().get(i)).getNom()+" "+race+" "+this.getBeings().get(i).getAge());
+
+                }
+
+
+
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
     }
 
     public ArrayList<Beings> getBeings() {

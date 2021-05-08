@@ -5,8 +5,8 @@ import Aquariummmm.Regime;
 import Aquariummmm.Sexe;
 
 public class Bar extends Poissons {
-    public Bar(int pv, Sexe sexe, String nom) {
-        super(pv, sexe, nom);
+    public Bar(int pv, String nom,int age) {
+        super(pv, nom,age);
         super.setRegime(Regime.HERBIVORE);
     }
 }

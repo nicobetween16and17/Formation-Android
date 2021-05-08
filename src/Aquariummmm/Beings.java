@@ -10,10 +10,12 @@ import Aquariummmm.Fishs.Herbivore.Sole;
 public class Beings {
     int pv;
     boolean Alive;
+    int age;
 
-    public Beings(int pv) {
+    public Beings(int pv, int age) {
         this.pv = pv;
         this.Alive = this.pv > 0;
+        this.age=age;
     }
 
     public int getPv() {
@@ -24,8 +26,16 @@ public class Beings {
         this.pv = pv;
     }
 
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
     public boolean isAlive() {
-        return this.Alive;
+        return this.getPv()>0 && this.getAge()<=20;
     }
 
     public void setAlive(boolean alive) {

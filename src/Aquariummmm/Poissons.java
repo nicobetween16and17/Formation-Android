@@ -12,10 +12,15 @@ public class Poissons extends Beings{
     String nom;
     Regime regime;
 
-    public Poissons(int pv,Sexe sexe, String nom) {
-        super(pv);
-        this.sexe=sexe;
+    public Poissons(int pv, String nom, int age) {
+        super(pv,age);
+        this.sexe=randomSexe();
         this.nom=nom;
+    }
+    public Sexe randomSexe(){
+
+        int random=(int)(Math.random()*2+1);
+        return random ==1?Sexe.FEMELLE:Sexe.MALE;
     }
 
 

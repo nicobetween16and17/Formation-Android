@@ -6,8 +6,8 @@ import Aquariummmm.Sexe;
 
 public class Merou extends Poissons {
 
-    public Merou(int pv, Sexe sexe, String nom) {
-        super(pv, sexe, nom);
+    public Merou(int pv, String nom,int age) {
+        super(pv, nom,age);
         super.setRegime(Regime.CARNIVORE);
     }
 }

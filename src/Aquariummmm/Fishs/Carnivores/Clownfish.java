@@ -6,8 +6,8 @@ import Aquariummmm.Sexe;
 
 public class Clownfish extends Poissons {
 
-    public Clownfish(int pv, Sexe sexe, String nom) {
-        super(pv, sexe, nom);
+    public Clownfish(int pv, String nom, int age) {
+        super(pv, nom, age);
         super.setRegime(Regime.CARNIVORE);
     }
 }

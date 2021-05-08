@@ -6,8 +6,8 @@ import Aquariummmm.Sexe;
 
 public class Thon extends Poissons {
 
-    public Thon(int pv, Sexe sexe, String nom) {
-        super(pv, sexe, nom);
+    public Thon(int pv, String nom,int age) {
+        super(pv, nom,age);
         super.setRegime(Regime.CARNIVORE);
     }
 }
