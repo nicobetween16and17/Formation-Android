@@ -147,7 +147,7 @@ public class Aquarium {
     }
     public void Aging(){
         for (int i = 0; i < this.getBeings().size(); i++) {
-            System.out.print("boucle - ");
+
             this.getBeings().get(i).setAge(this.getBeings().get(i).getAge()+1);
             if (this.getBeings().get(i).isAlgue()){
                 ((Algues) this.getBeings().get(i)).grandir();
