@@ -10,6 +10,7 @@ public class Main {
         a.initialize();
         String choix="";
         boolean finish = false;
+        a.DisplayBeings();
         while (!finish){
             System.out.println("Choix: pass-passer un tour, save-sauvegarder, quit-quitter");
             choix =s.nextLine();

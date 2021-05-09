@@ -95,6 +95,7 @@ public class Aquarium {
                 if(this.getBeings().get(i)instanceof Algues){
                     race="algue";
                     save.write(this.getBeings().get(i).getPv()+" "+race+" "+this.getBeings().get(i).getAge());
+                    save.write(System.getProperty("line.separator"));
                 }else{
                     if (this.getBeings().get(i)instanceof Thon){
                         race = "Thon";
@@ -115,10 +116,11 @@ public class Aquarium {
                         race = "Carpe";
                     }
                     save.write(((Poissons)this.getBeings().get(i)).getNom()+" "+race+" "+this.getBeings().get(i).getAge());
-
+                    save.write(System.getProperty("line.separator"));
                 }
             }
             System.out.println("Fichier sauvegardé");
+            save.close();
         } catch (IOException e) {
             System.out.println("Erreur systeme");
         }
@@ -136,19 +138,36 @@ public class Aquarium {
     public void PasserJour(){
         System.out.println(this.DisplayDay());
         System.out.println(this.Nbetoile());
+        this.Aging();
+        this.reproduction();
         this.manger();
         this.DisplayBeings();
-        this.Aging();
+        this.resetlibido(this.getNbjour());
+
     }
     public void Aging(){
         for (int i = 0; i < this.getBeings().size(); i++) {
+            System.out.print("boucle - ");
             this.getBeings().get(i).setAge(this.getBeings().get(i).getAge()+1);
+            if (this.getBeings().get(i).isAlgue()){
+                ((Algues) this.getBeings().get(i)).grandir();
+                if(!this.getBeings().get(i).isAlive()){
+                    this.RemoveCorpse(this.getBeings().get(i));
+                }
+            }
+            if(this.getBeings().get(i).isPoisson()){
+                this.getBeings().get(i).viellir();
+                if(!this.getBeings().get(i).isAlive()){
+                    this.RemoveCorpse(this.getBeings().get(i));
+                }
+
+            }
         }
     }
     public void reproduction(){
         for (int i = 0; i < this.getBeings().size(); i++) {
             if (this.getBeings().get(i).isPoisson()){
-                if(!((Poissons)this.getBeings().get(i)).isHungry()&&this.hasMate((Poissons)this.getBeings().get(i))){
+                if(!(((Poissons)this.getBeings().get(i)).isHungry())&&this.hasMate((Poissons)this.getBeings().get(i))&&((Poissons)this.getBeings().get(i)).isIsfuckable()){
                     this.Birth(this.getBeings().get(i));
                 }
             }
@@ -198,28 +217,47 @@ public class Aquarium {
         boolean hasmate = false;
         for (int i = 0; i < this.FishList().size(); i++) {
             if(!fish.equals(this.FishList().get(i))){
-                if(fish.isBar() && this.FishList().get(i).isBar() && this.FishList().get(i).getSexe()!=((Bar)fish).CurrentSexe(fish.getAge())){
-                    hasmate = true;
+                if(fish.isBar() && this.FishList().get(i).isBar() && this.FishList().get(i).getSexe()!=((Bar)fish).CurrentSexe(fish.getAge())&&!fish.isHasfucked()&&!this.FishList().get(i).isHasfucked()&&this.FishList().get(i).isIsfuckable()){
+                    System.out.println(fish.getNom()+" se reproduit avec "+this.FishList().get(i).getNom());
+                    this.FishList().get(i).setHasfucked(true);
+                    fish.setHasfucked(true);
+                    hasmate = true;break;
                 }
-                if(fish.isCarpe()&& this.FishList().get(i).isCarpe() && this.FishList().get(i).getSexe()!=fish.getSexe()){
-                    hasmate = true;
+                if(fish.isCarpe()&& this.FishList().get(i).isCarpe() && this.FishList().get(i).getSexe()!=fish.getSexe()&&!fish.isHasfucked()&&!this.FishList().get(i).isHasfucked()&&this.FishList().get(i).isIsfuckable()){
+                    System.out.println(fish.getNom()+" se reproduit avec "+this.FishList().get(i).getNom());
+                    this.FishList().get(i).setHasfucked(true);
+                    fish.setHasfucked(true);
+                    hasmate = true;break;
                 }
-                if(fish.isClownfish()&& this.FishList().get(i).isClownfish()){
-                    hasmate = true;
+                if(fish.isClownfish()&& this.FishList().get(i).isClownfish()&&!fish.isHasfucked()&&!this.FishList().get(i).isHasfucked()&&this.FishList().get(i).isIsfuckable()){
+                    System.out.println(fish.getNom()+" se reproduit avec "+this.FishList().get(i).getNom());
+                    this.FishList().get(i).setHasfucked(true);
+                    fish.setHasfucked(true);
+                    hasmate = true;break;
                 }
-                if(fish.isSole()&& this.FishList().get(i).isSole()){
-                    hasmate = true;
+                if(fish.isSole()&& this.FishList().get(i).isSole()&&!fish.isHasfucked()&&!this.FishList().get(i).isHasfucked()&&this.FishList().get(i).isIsfuckable()){
+                    System.out.println(fish.getNom()+" se reproduit avec "+this.FishList().get(i).getNom());
+                    this.FishList().get(i).setHasfucked(true);
+                    fish.setHasfucked(true);
+                    hasmate = true;break;
                 }
-                if(fish.isThon()&& this.FishList().get(i).isThon()&& this.FishList().get(i).getSexe()!=fish.getSexe()){
-                    hasmate = true;
+                if(fish.isThon()&& this.FishList().get(i).isThon()&& this.FishList().get(i).getSexe()!=fish.getSexe()&&!fish.isHasfucked()&&!this.FishList().get(i).isHasfucked()&&this.FishList().get(i).isIsfuckable()){
+                    System.out.println(fish.getNom()+" se reproduit avec "+this.FishList().get(i).getNom());
+                    this.FishList().get(i).setHasfucked(true);
+                    fish.setHasfucked(true);
+                    hasmate = true;break;
                 }
-                if(fish.isMerou()&& this.FishList().get(i).isMerou()&& this.FishList().get(i).getSexe()!=((Bar)fish).CurrentSexe(fish.getAge())){
-                    hasmate = true;
+                if(fish.isMerou()&& this.FishList().get(i).isMerou()&& this.FishList().get(i).getSexe()!=((Merou)fish).CurrentSexe(fish.getAge())&&!fish.isHasfucked()&&!this.FishList().get(i).isHasfucked()&&this.FishList().get(i).isIsfuckable()){
+                    System.out.println(fish.getNom()+" se reproduit avec "+this.FishList().get(i).getNom());
+                    this.FishList().get(i).setHasfucked(true);
+                    fish.setHasfucked(true);
+                    hasmate = true;break;
                 }
             }
 
 
         }
+
         return hasmate;
     }
     public String DisplayDay(){
@@ -255,6 +293,15 @@ public class Aquarium {
             }
         }
     }
+    public void resetlibido(int Tour){
+        int tourpaire = Tour%2;
+        if(tourpaire==0){
+            for (int i = 0; i < FishList().size(); i++) {
+                this.FishList().get(i).setHasfucked(false);
+            }
+        }
+
+    }
     public ArrayList<Poissons>FishList(){
         ArrayList<Poissons> fishs=new ArrayList<>();
         for (int i = 0; i < this.getBeings().size() ; i++) {
@@ -266,7 +313,7 @@ public class Aquarium {
     }
     public Poissons getRandomFish(Poissons f){
         int random = (int) (Math.random() * this.getBeings().size());
-        while (this.getBeings().get(random)instanceof Poissons && !(this.getBeings().get(random).equals(f))){
+        while (!(this.getBeings().get(random)instanceof Poissons) || (this.getBeings().get(random).equals(f))){
             random = (int) (Math.random() * this.getBeings().size());
         }
         return (Poissons) this.getBeings().get(random);
@@ -274,8 +321,14 @@ public class Aquarium {
     }
     public Algues getRandomAlgue(){
         int random = (int) (Math.random() * this.getBeings().size());
-        while (this.getBeings().get(random)instanceof Algues ){
-            random = (int) (Math.random() * this.getBeings().size());
+        boolean avaible=false;
+        while (!avaible){
+            if(!(this.getBeings().get(random)instanceof Algues )){
+                random = (int) (Math.random() * this.getBeings().size());
+            }else{
+                avaible = true;
+            }
+
         }
         return (Algues) this.getBeings().get(random);
 
@@ -287,28 +340,28 @@ public class Aquarium {
         for (int i = 0; i < this.getBeings().size(); i++) {
             if(this.getBeings().get(i).isAlgue()){
                 nbAlgue++;
-                System.out.println("-Algue \t"+this.getBeings().get(i).getAge()+"ans"+this.getBeings().get(i).getPv()+"Pdv");
+                System.out.println("-Algue \t"+this.getBeings().get(i).getAge()+"ans "+this.getBeings().get(i).getPv()+"Pdv");
             }
             if(this.getBeings().get(i).isPoisson()){
                 nbFish++;
                 if(this.getBeings().get(i).isSole()){
-                    System.out.println("-Sole "+((Poissons)this.getBeings().get(i)).getNom()+((Sole)this.getBeings().get(i)).getSexe()+this.getBeings().get(i).getAge()+"ans"+ "\t"+this.getBeings().get(i).getPv()+"Pdv");
+                    System.out.println("-Sole "+((Poissons)this.getBeings().get(i)).getNom()+" "+((Sole)this.getBeings().get(i)).getSexe()+" "+this.getBeings().get(i).getAge()+"ans"+ "\t"+this.getBeings().get(i).getPv()+"Pdv");
 
                 }
                 if(this.getBeings().get(i).isBar()){
-                    System.out.println("-Bar "+((Poissons)this.getBeings().get(i)).getNom()+((Bar)this.getBeings().get(i)).getSexe()+this.getBeings().get(i).getAge()+"ans"+ "\t"+this.getBeings().get(i).getPv()+"Pdv");
+                    System.out.println("-Bar "+((Poissons)this.getBeings().get(i)).getNom()+" "+((Bar)this.getBeings().get(i)).getSexe()+" "+this.getBeings().get(i).getAge()+"ans"+ "\t"+this.getBeings().get(i).getPv()+"Pdv");
                 }
                 if(this.getBeings().get(i).isCarpe()){
-                    System.out.println("-Carpe "+((Poissons)this.getBeings().get(i)).getNom()+((Carpe)this.getBeings().get(i)).getSexe()+this.getBeings().get(i).getAge()+"ans"+ "\t"+this.getBeings().get(i).getPv()+"Pdv");
+                    System.out.println("-Carpe "+((Poissons)this.getBeings().get(i)).getNom()+" "+((Carpe)this.getBeings().get(i)).getSexe()+" "+this.getBeings().get(i).getAge()+"ans"+ "\t"+this.getBeings().get(i).getPv()+"Pdv");
                 }
                 if(this.getBeings().get(i).isMerou()){
-                    System.out.println("-Merou "+((Poissons)this.getBeings().get(i)).getNom()+((Merou)this.getBeings().get(i)).getSexe()+this.getBeings().get(i).getAge()+"ans"+ "\t"+this.getBeings().get(i).getPv()+"Pdv");
+                    System.out.println("-Merou "+((Poissons)this.getBeings().get(i)).getNom()+" "+((Merou)this.getBeings().get(i)).getSexe()+" "+this.getBeings().get(i).getAge()+"ans"+ "\t"+this.getBeings().get(i).getPv()+"Pdv");
                 }
                 if(this.getBeings().get(i).isClownfish()){
-                    System.out.println("-Clowfish "+((Poissons)this.getBeings().get(i)).getNom()+((Clownfish)this.getBeings().get(i)).getSexe()+this.getBeings().get(i).getAge()+"ans"+ "\t"+this.getBeings().get(i).getPv()+"Pdv");
+                    System.out.println("-Clowfish "+((Poissons)this.getBeings().get(i)).getNom()+" "+((Clownfish)this.getBeings().get(i)).getSexe()+" "+this.getBeings().get(i).getAge()+"ans"+ "\t"+this.getBeings().get(i).getPv()+"Pdv");
                 }
                 if(this.getBeings().get(i).isThon()){
-                    System.out.println("-Thon "+((Poissons)this.getBeings().get(i)).getNom()+((Thon)this.getBeings().get(i)).getSexe()+this.getBeings().get(i).getAge()+"ans"+ "\t"+this.getBeings().get(i).getPv()+"Pdv");
+                    System.out.println("-Thon "+((Poissons)this.getBeings().get(i)).getNom()+" "+((Thon)this.getBeings().get(i)).getSexe()+" "+this.getBeings().get(i).getAge()+"ans"+ "\t"+this.getBeings().get(i).getPv()+"Pdv");
                 }
             }
         }

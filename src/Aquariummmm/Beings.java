@@ -37,7 +37,7 @@ public class Beings {
     public boolean isAlive() {
         return this.getPv()>0 && this.getAge()<=20;
     }
-
+    public void viellir(){this.setPv(this.getPv()-1);}
     public void setAlive(boolean alive) {
         this.Alive = alive;
     }
